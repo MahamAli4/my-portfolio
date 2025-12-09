@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">My Skills</h1>
+    
+    <div class="row">
+        {% for skill in skills %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h5 class="card-title mb-0">
+                            <i class="{{ skill.icon }} me-2"></i>{{ skill.name }}
+                        </h5>
+                        <span>{{ skill.proficiency }}%</span>
+                    </div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" style="width: {{ skill.proficiency }}%"></div>
+                    </div>
+                    <p class="card-text">{{ skill.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

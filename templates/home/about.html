@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Maham Ali - Portfolio{% endblock %}
+
+{% block content %}
+<!-- About Hero -->
+<section class="hero-section py-5" style="min-height: 60vh;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h1 class="display-4 fw-bold hero-title mb-4">About <span class="text-accent">Me</span></h1>
+                <h2 class="h4 text-light mb-4">MERN Stack Developer & Graphic Designer</h2>
+                <p class="text-secondary lead">
+                    I am a passionate and dedicated developer who bridges the gap between design and technology. With
+                    expertise in both graphic design and full-stack development, I build digital experiences that are
+                    not only functional but also visually compelling.
+                </p>
+                <div class="mt-4">
+                    <div class="d-flex align-items-center text-secondary mb-2">
+                        <i class="fas fa-envelope text-accent me-3" style="width: 20px;"></i> mahamalifa@gmail.com
+                    </div>
+                    <div class="d-flex align-items-center text-secondary mb-2">
+                        <i class="fas fa-phone text-accent me-3" style="width: 20px;"></i> 03203560545
+                    </div>
+                    <div class="d-flex align-items-center text-secondary">
+                        <i class="fas fa-map-marker-alt text-accent me-3" style="width: 20px;"></i> Block 10 FB Area
+                        Karachi
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
+                <div class="position-relative d-inline-block">
+                    <div class="border border-2 border-accent rounded position-absolute w-100 h-100"
+                        style="top: 20px; left: 20px; z-index: -1;"></div>
+                    <img src="{% static 'images/profile-placeholder.png' %}"
+                        onerror="this.src='https://ui-avatars.com/api/?name=Maham+Ali&background=112240&color=64ffda&size=400'"
+                        alt="Maham Ali" class="img-fluid rounded shadow-lg hover-scale" style="max-width: 350px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            {% for stat in statistics %}
+            <div class="col-6 col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:100 }}">
+                <div class="p-4 rounded bg-light-blue h-100 hover-scale">
+                    <i class="{{ stat.icon }} fa-3x text-accent mb-3"></i>
+                    <h3 class="display-4 fw-bold text-light">{{ stat.count }}{{ stat.suffix }}</h3>
+                    <p class="text-secondary mb-0">{{ stat.title }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default Stats if none in DB -->
+            <div class="col-6 col-md-3 mb-4">
+                <div class="p-4 rounded bg-light-blue h-100">
+                    <h3 class="display-4 fw-bold text-light">5+</h3>
+                    <p class="text-secondary">Years Experience</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 mb-4">
+                <div class="p-4 rounded bg-light-blue h-100">
+                    <h3 class="display-4 fw-bold text-light">20+</h3>
+                    <p class="text-secondary">Projects Completed</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 mb-4">
+                <div class="p-4 rounded bg-light-blue h-100">
+                    <h3 class="display-4 fw-bold text-light">10+</h3>
+                    <p class="text-secondary">Happy Clients</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Call to Action -->
+<section class="py-5 bg-light-blue text-center">
+    <div class="container">
+        <h2 class="text-light mb-4">Let's work together!</h2>
+        <a href="mailto:mahamalifa@gmail.com" class="btn btn-primary btn-lg hover-scale">Contact Me</a>
+    </div>
+</section>
+{% endblock %}

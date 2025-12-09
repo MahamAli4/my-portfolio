@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">My Projects</h1>
+    
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="btn-group" role="group">
+                <a href="{% url 'project_list' %}" class="btn btn-outline-primary">All</a>
+                <a href="?category=web" class="btn btn-outline-primary">Web</a>
+                <a href="?category=mobile" class="btn btn-outline-primary">Mobile</a>
+                <a href="?category=design" class="btn btn-outline-primary">Design</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+            <div class="card project-card h-100">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description|truncatechars:100 }}</p>
+                    <div class="mb-3">
+                        {% for tech in project.get_technologies_list|slice:":3" %}
+                        <span class="badge bg-primary me-1">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'project_detail' project.slug %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No projects found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
